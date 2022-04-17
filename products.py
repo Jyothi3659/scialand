@@ -11,7 +11,20 @@ logging.basicConfig(filename='scialand.log',
 
 def read_csv():
     '''To read CSV file and generates dictionary object'''
-    pass
+    purchase_products = {}
+    with open('Purchase products - Sheet1.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                line_count += 1
+            else:
+                line_count += 1
+                if row[0] in list(purchase_products.keys()):
+                    purchase_products[row[0]]['quantity'] += 1
+                else :
+                    purchase_products[row[0]] = {'quantity':1,'rate':row[1]}
+    return purchase_products
             
 
 class Item():
