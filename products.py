@@ -29,8 +29,14 @@ def read_csv():
 
 class Item():
 
-    def __init__(self):
-        pass
+    def __init__(self,rate,tax,category):
+        self.tax = tax
+        self.rate = rate
+        self.category = category
+        self.item_tax = 0
+        self.deposit_tax = 0
+        self.primary_tax = 0
+        self.luxury_tax = 0
 
     def set_tax(self):
         """Method to calculate tax for each selected product"""
