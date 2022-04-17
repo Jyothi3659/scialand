@@ -52,7 +52,11 @@ class Container():
     
     def __init__(self,products):
         """Container class expects dictionary which contains selected products"""
-        pass
+        self.purchase_products = products
+        self.luxury_tax = 0
+        self.deposit_tax = 0
+        self.primary_tax = 0
+        self.total = 0
 
     def print_receipt(self):
         """Method to generate recept based on selected  products"""
@@ -62,3 +66,6 @@ class Container():
         """calculate tax, deposit tax and total fare for all the products"""
         pass
 
+if __name__ == '__main__':
+    basket = read_csv()
+    container = Container(basket)
