@@ -40,7 +40,7 @@ class Item():
 
     def set_tax(self):
         """Method to calculate tax for each selected product"""
-        pass
+        self.item_tax = (float(self.rate)*float(self.tax))/100
 
     def set_deposit_tax(self):
         """Method to calculate deposit tax on recyclable products"""
