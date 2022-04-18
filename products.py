@@ -29,9 +29,10 @@ def read_csv():
 
 class Item():
 
-    def __init__(self,rate,tax,category):
+    def __init__(self,rate,tax,deposit_tax,category):
         self.tax = tax
         self.rate = rate
+        self.deposit = deposit_tax
         self.category = category
         self.item_tax = 0
         self.deposit_tax = 0
@@ -44,7 +45,7 @@ class Item():
 
     def set_deposit_tax(self):
         """Method to calculate deposit tax on recyclable products"""
-        self.deposit_tax = (float(self.rate)*float(self.tax))/100
+        self.deposit_tax = (float(self.rate)*float(self.deposit))/100
 
     def set_category(self):
         """To set primary and luxury tax based on category"""
@@ -85,7 +86,7 @@ class Container():
         for key,value in self.purchase_products.items():
             try:
                 product = avaliable_products[key]
-                item = Item(product['rate'],product['tax'],product['product_category'])
+                item = Item(product['rate'],product['tax'],product['deposit_tax'],product['product_category'])
                 item.compute()
                 self.luxury_tax += item.luxury_tax
                 self.deposit_tax += item.deposit_tax 
