@@ -72,7 +72,13 @@ class Container():
 
     def print_receipt(self):
         """Method to generate recept based on selected  products"""
-        pass
+        for key,value in self.purchase_products.items():
+            print(value['quantity']," ",key, "@ SC ", value['rate'])
+        print('\n')
+        print('Total:   ',self.total)
+        print('Deposit: SC ', self.deposit_tax)
+        print('Sales Tax (Luxury): SC ', self.luxury_tax)
+        print('Sales Tax (Primary): SC ', self.primary_tax)
 
     def process(self):
         """calculate tax, deposit tax and total fare for all the products"""
@@ -90,7 +96,9 @@ class Container():
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 error_stack = repr(traceback.format_exception(exc_type, exc_value, exc_traceback))
                 logging.error(error_stack)
+        self.print_receipt()
 
 if __name__ == '__main__':
     basket = read_csv()
     container = Container(basket)
+    container.process()
