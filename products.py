@@ -54,7 +54,10 @@ class Item():
             self.luxury_tax = self.item_tax
     
     def compute(self):
-        pass
+        """To set primary tax, luxury tax based on category"""
+        self.set_tax()
+        self.set_deposit_tax()
+        self.set_category()
 
 
 class Container():
@@ -73,7 +76,20 @@ class Container():
 
     def process(self):
         """calculate tax, deposit tax and total fare for all the products"""
-        pass
+        for key,value in self.purchase_products.items():
+            try:
+                product = avaliable_products[key]
+                item = Item(product['rate'],product['tax'],product['product_category'])
+                item.compute()
+                self.luxury_tax += item.luxury_tax
+                self.deposit_tax += item.deposit_tax 
+                self.primary_tax += item.primary_tax
+                total = product['rate'] + self.luxury_tax + self.primary_tax + self.deposit_tax
+                self.total += total * value['quantity']
+            except Exception as e:
+                exc_type, exc_value, exc_traceback = sys.exc_info()
+                error_stack = repr(traceback.format_exception(exc_type, exc_value, exc_traceback))
+                logging.error(error_stack)
 
 if __name__ == '__main__':
     basket = read_csv()
