@@ -44,11 +44,14 @@ class Item():
 
     def set_deposit_tax(self):
         """Method to calculate deposit tax on recyclable products"""
-        pass
+        self.deposit_tax = (float(self.rate)*float(self.tax))/100
 
     def set_category(self):
         """To set primary and luxury tax based on category"""
-        pass
+        if self.category == 'primary':
+            self.primary_tax = self.item_tax
+        elif self.category == 'luxury':
+            self.luxury_tax = self.item_tax
     
     def compute(self):
         pass
